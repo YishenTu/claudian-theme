@@ -1,6 +1,10 @@
 /*
- * Claudian base styles, adapted from Meridian 1.19.1 by mvahaste (MIT; see licenses/Meridian.txt).
- * Changes: Style Settings group renamed, navigation descriptions clarified, image-hover fix integrated.
+ * Claudian theme source. `npm run build` adds the license header and writes theme.css.
+ *
+ * Sections:
+ * 1. Base: adapted from Meridian 1.19.1 by mvahaste (MIT; see licenses/Meridian.txt).
+ * 2. Left sidebar: adapted from Baseline 4.0.0 by svnaxis (MIT; see licenses/Baseline.txt).
+ * 3. Extras: tables, scrollbars, tab underline, right-sidebar icons, status bar.
  */
 
 /*
@@ -864,4 +868,297 @@ body.show-header-levels-always
 }
 .HyperMD-header-6 .cm-fold-indicator .collapse-indicator::before {
   content: "H6";
+}
+
+/*
+ * ╭─────────────────────────────────────────────────────────╮
+ * │                       Left Sidebar                      │
+ * ╰─────────────────────────────────────────────────────────╯
+*/
+/* Adapted from Baseline 4.0.0: app/tabs.scss and app/sidedock.scss.
+ * Keep tokens local so the base styles continue to own the editor and right sidebar. */
+body :is(.mod-left-split, .workspace-drawer.mod-left) {
+  --nav-item-radius: 8px;
+  --nav-item-padding: 4px 16px 4px 36px;
+  --nav-item-parent-padding: var(--nav-item-padding);
+  --nav-item-children-margin-start: 12px;
+  --nav-item-children-padding-start: 0px;
+  --nav-indentation-guide-width: 0px;
+  --nav-item-background-active: transparent;
+  --nav-item-background-hover: transparent;
+  --nav-item-color-active: var(--text-normal);
+  --nav-item-weight-active: 500;
+  --sidebar-tab-text-display: inline-block;
+  --tab-radius: 8px;
+  --tab-text-color-active: var(--text-normal);
+  --tab-text-color-focused-active: var(--text-normal);
+  --tab-text-color-focused-active-current: var(--text-normal);
+  --clickable-icon-radius: 8px;
+  --vault-profile-radius: 8px;
+}
+
+body .mod-left-split .workspace-leaf {
+  background-color: transparent;
+}
+
+/* Keep the left toggle hidden, including when the sidebar is collapsed. */
+body .workspace .sidebar-toggle-button.mod-left {
+  display: none;
+}
+
+/* Restore the left navigation tabs that Meridian hides. */
+body .mod-left-split .workspace-tabs .workspace-tab-header-container-inner,
+body .mod-left-split .workspace-tab-header-container-inner [data-type="localgraph"] {
+  opacity: 1;
+}
+
+body .mod-left-split .workspace-tab-header-container {
+  background: transparent;
+  border-bottom: none;
+  padding-block: 8px;
+  align-items: center;
+}
+
+body .mod-left-split .workspace-tab-header-container-inner {
+  -webkit-app-region: no-drag;
+  gap: 8px;
+  margin: 0;
+  padding: 0 8px;
+}
+
+body .mod-left-split .workspace-tab-header {
+  --no-tooltip: true;
+  margin: 0;
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+body .mod-left-split .workspace-tab-header::before,
+body .mod-left-split .workspace-tab-header::after,
+body .mod-left-split .workspace-tab-header-inner::after {
+  display: none;
+}
+
+body .mod-left-split .workspace-tab-header.is-active {
+  color: var(--text-normal);
+}
+
+body .workspace .mod-left-split .workspace-tab-header-container .workspace-tab-header:is(.is-active, :hover) {
+  background: transparent;
+}
+
+body .mod-left-split .workspace-tab-header-inner {
+  gap: 8px;
+}
+
+/* Baseline's default: icon-and-label rows in the top tab group. */
+body:not(.is-mobile) .mod-left-split .workspace-tabs.mod-top-left-space .workspace-tab-header-container {
+  height: auto;
+  flex-direction: column;
+  /* Reserve the titlebar row for macOS window controls. */
+  padding: var(--header-height) 0 8px;
+}
+
+body:not(.is-mobile) .mod-left-split .workspace-tabs.mod-top-left-space .workspace-tab-header-container-inner {
+  flex-direction: column;
+  align-self: stretch;
+  gap: 0;
+  max-height: none;
+  padding: 0 8px;
+}
+
+body:not(.is-mobile) .mod-left-split .workspace-tabs.mod-top-left-space .workspace-tab-header {
+  flex: 0 0 auto;
+  width: 100%;
+  max-width: none;
+  height: auto;
+  padding: 8px 12px;
+}
+
+body:not(.is-mobile) .mod-left-split .workspace-tabs.mod-top-left-space .workspace-tab-header-inner {
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+body:not(.is-mobile) .mod-left-split .workspace-tabs.mod-top-left-space .workspace-tab-header-inner-title {
+  display: inline-block;
+  text-align: start;
+}
+
+body:not(.is-mobile) .mod-left-split .workspace-tabs.mod-top-left-space .workspace-tab-header-spacer {
+  display: none;
+}
+
+body:not(.is-mobile) .mod-left-split .workspace-leaf-content > :is(.node-insert-event, .view-content) {
+  padding: 0 8px 8px;
+}
+
+body :is(.mod-left-split, .workspace-drawer.mod-left) :is(.tree-item-self, .tree-item-inner) {
+  align-items: center;
+}
+
+body .mod-left-split .tree-item-self .tree-item-icon {
+  margin-inline-start: -24px;
+}
+
+/* Compact toolbar dots expand on hover or keyboard focus. */
+body .workspace .mod-left-split .workspace-leaf-content[data-type] .nav-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  max-height: none;
+  opacity: 1;
+  padding: 8px 16px;
+}
+
+body .mod-left-split .nav-buttons-container {
+  flex-wrap: nowrap;
+  gap: 4px;
+}
+
+body .mod-left-split .nav-action-button {
+  border-radius: 8px;
+  padding: 8px;
+  transition: padding 160ms ease, background-color 160ms ease;
+}
+
+body .mod-left-split .nav-header .search-input-container {
+  margin: 8px 0;
+  width: 100%;
+}
+
+body:not(.is-mobile) .mod-left-split .workspace-leaf-content:not(:focus-within) .nav-header:not(:hover):not(:focus-within) .nav-action-button {
+  padding: 2px;
+  min-width: 0;
+  background: var(--background-modifier-hover);
+}
+
+body:not(.is-mobile) .mod-left-split .workspace-leaf-content:not(:focus-within) .nav-header:not(:hover):not(:focus-within) .nav-action-button svg {
+  width: 0;
+  height: 0;
+}
+
+/* Keep the vault footer in flow so it cannot cover the last file. */
+body .mod-left-split .workspace-sidedock-vault-profile {
+  background: transparent;
+  border-top: none;
+  padding: 8px;
+  gap: 4px;
+}
+
+body .mod-left-split .workspace-sidedock-vault-profile:focus-within .workspace-drawer-vault-switcher {
+  opacity: 1;
+}
+
+body .mod-left-split :is(.workspace-tab-header, .nav-action-button, .clickable-icon):focus-visible {
+  outline: 2px solid var(--interactive-accent);
+  outline-offset: -2px;
+}
+
+/* Touch navigation stays expanded; no hover dependency on mobile. */
+body.is-mobile .workspace-drawer.mod-left {
+  --nav-item-padding: 12px 24px;
+  --nav-item-children-margin-start: 12px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body .mod-left-split .nav-action-button,
+  body .mod-left-split .workspace-tab-header-container-inner,
+  body .mod-left-split .workspace-drawer-vault-switcher {
+    transition: none;
+  }
+}
+
+/*
+ * ╭─────────────────────────────────────────────────────────╮
+ * │                          Extras                         │
+ * ╰─────────────────────────────────────────────────────────╯
+*/
+/* Source: full-width-tables.css */
+/* Force tables to span full width */
+.markdown-preview-view table,
+.markdown-rendered table,
+.markdown-source-view.mod-cm6 .cm-embed-block table,
+.cm-preview-code-block table {
+  width: 100%;
+  table-layout: auto;
+}
+
+/* Also target the table container */
+.markdown-preview-view .table-wrapper,
+.markdown-rendered .table-wrapper,
+body .markdown-source-view.mod-cm6 .cm-table-widget .table-wrapper {
+  width: 100%;
+}
+
+/* Source: hide-scrollbars.css */
+/* Hide scrollbars throughout Obsidian while preserving scroll behavior. */
+* {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Legacy Edge/IE */
+}
+
+body {
+  --scrollbar-width: 0;
+  --scrollbar-height: 0;
+}
+
+*::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none; /* Chromium/Electron */
+}
+
+body,
+.app-container,
+.workspace,
+.workspace-split,
+.workspace-leaf,
+.workspace-leaf-content,
+.view-content,
+.markdown-source-view,
+.markdown-reading-view,
+.cm-scroller,
+.nav-files-container,
+.search-results-container,
+.vertical-tab-content-container,
+.modal-content,
+.menu {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* Source: hightlight-tab.css */
+/* Dark mode - active tab with Obsidian purple bottom border (center tabs only) */
+.theme-dark .workspace-split.mod-root .workspace-tab-header.is-active {
+    border-bottom: 2px solid #a882ff;
+}
+
+/* Source: sidebar-icon.css */
+/* Right sidebar: align tab icons to the right, expanding leftward */
+.mod-right-split .workspace-tab-header-container {
+  flex-direction: row-reverse;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.mod-right-split .workspace-tab-header-container-inner {
+  padding-right: 16px;
+}
+
+.mod-right-split .workspace-tab-header-container:hover {
+  opacity: 1;
+}
+
+/* Source: status-bar.css */
+body .status-bar {
+  display: none;
+}
+
+/* Keep a small bottom inset on desktop. */
+body:not(.is-mobile) .workspace-leaf-content .view-content {
+  padding-bottom: 8px;
 }
