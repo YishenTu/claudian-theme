@@ -81,8 +81,9 @@ SOFTWARE.
  * │                     Monospace font                      │
  * ╰─────────────────────────────────────────────────────────╯
 */
-.font-monospace * {
-  font-family: var(--font-monospace) !important;
+.font-monospace {
+  --font-text: var(--font-monospace);
+  --font-interface: var(--font-monospace);
 }
 
 /*
@@ -157,18 +158,18 @@ SOFTWARE.
  * │                       Image align                       │
  * ╰─────────────────────────────────────────────────────────╯
 */
-.image-center .image-embed {
-  display: flex !important;
+body .image-center .image-embed {
+  display: flex;
   justify-content: center;
 }
 
-.image-left .image-embed {
-  display: flex !important;
+body .image-left .image-embed {
+  display: flex;
   justify-content: start;
 }
 
-.image-right .image-embed {
-  display: flex !important;
+body .image-right .image-embed {
+  display: flex;
   justify-content: end;
 }
 
@@ -388,8 +389,12 @@ body:not(.hide-sidebar-buttons-never) .sidebar-toggle-button.mod-left {
 }
 
 /* Hide vault action buttons (help, settings) */
+body {
+  --vault-profile-actions-display: none;
+}
+
 .workspace-sidedock-vault-profile .workspace-drawer-vault-actions {
-  display: none !important;
+  display: none;
 }
 
 /* Hide tag, backlinks, outgoing links, and outline headers unless hovered */
@@ -458,8 +463,9 @@ body:not(.hide-sidebar-buttons-never) .sidebar-toggle-button.mod-left {
 }
 
 /* Hide header underline for internal links */
-.hide-header-link-underline .HyperMD-header .cm-hmd-internal-link a {
-  text-decoration: none !important;
+.hide-header-link-underline .HyperMD-header {
+  --link-decoration: none;
+  --link-decoration-hover: none;
 }
 
 /*
@@ -527,7 +533,7 @@ body {
   --titlebar-background-focused: var(--background-primary);
 
   /* Dividers */
-  --divider-color: transparent !important;
+  --divider-color: transparent;
 
   /* Headings */
   --h1-size: calc(var(--font-text-size) * 2);
@@ -763,14 +769,18 @@ img {
 /* Prevent image-hover toolbar compositing artifacts.
  * Integrated from the local meridian-image-hover-fix.css snippet.
  */
+body {
+  --embed-actions-blur: none;
+}
+
 .image-embed .embed-actions {
-  -webkit-backdrop-filter: none !important;
-  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
 }
 
 /* Avoid text rasterization changes during the toolbar fade-in. */
 .markdown-source-view.mod-cm6 .image-embed .embed-actions {
-  transition: none !important;
+  transition: none;
 }
 
 /*
@@ -778,13 +788,17 @@ img {
  * │              Transparent Background Fixes               │
  * ╰─────────────────────────────────────────────────────────╯
 */
-:not(.mod-windows) .prompt,
-:not(.mod-windows) .popover,
-:not(.mod-windows) .suggestion,
-:not(.mod-windows) .graph-controls,
-:not(.mod-windows) .lt-predictions-container,
-:not(.mod-windows) .vertical-tab-content {
-  background-color: var(--modal-background) !important;
+/* Extra selectors match Obsidian's more specific variants so no override flag is needed. */
+body .prompt,
+body.is-mobile .prompt,
+body .popover,
+body .suggestion,
+body .graph-controls,
+body .workspace-split:not(.mod-root) .graph-controls.is-close,
+body .lt-predictions-container,
+body .vertical-tab-content,
+body.is-mobile .modal.mod-settings .vertical-tab-content {
+  background-color: var(--modal-background);
 }
 
 /*
@@ -824,17 +838,17 @@ img {
  * │       Header Spacing Between Header and Paragraph       │
  * ╰─────────────────────────────────────────────────────────╯
 */
-.HyperMD-header-1:has(+ .cm-line):not(:has(+ .HyperMD-header-2)),
-.HyperMD-header-2:has(+ .cm-line):not(:has(+ .HyperMD-header-3)) {
-  padding-bottom: 0.125em !important;
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-header-1,
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-header-2 {
+  padding-bottom: 0.125em;
 }
 
-.HyperMD-header-3:has(+ .cm-line):not(:has(+ .HyperMD-header-4)) {
-  padding-bottom: 0.1em !important;
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-header-3 {
+  padding-bottom: 0.1em;
 }
 
-.HyperMD-header-4:has(+ .cm-line):not(:has(+ .HyperMD-header-5)) {
-  padding-bottom: 0.075em !important;
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-header-4 {
+  padding-bottom: 0.075em;
 }
 
 /*
@@ -872,14 +886,14 @@ img {
  * │                 Minimal Image Captions                  │
  * ╰─────────────────────────────────────────────────────────╯
 */
-.minimal-image-captions .image-captions-figure {
-  background-color: transparent !important;
+body.minimal-image-captions .image-captions-figure {
+  background-color: transparent;
 }
 
-.minimal-image-captions .image-captions-caption {
-  background-color: transparent !important;
-  font-size: 0.8em !important;
-  text-align: left !important;
+body.minimal-image-captions .image-captions-caption {
+  background-color: transparent;
+  font-size: 0.8em;
+  text-align: left;
 }
 
 /*
@@ -887,11 +901,11 @@ img {
  * │    Show Header Levels Instead of Collapse Indicators    │
  * ╰─────────────────────────────────────────────────────────╯
 */
-.show-header-levels-always
+body.show-header-levels-always
   .HyperMD-header
   .cm-fold-indicator
   .collapse-indicator {
-  opacity: 1 !important;
+  opacity: 1;
 }
 
 .HyperMD-header .cm-fold-indicator .collapse-indicator svg {
@@ -900,7 +914,7 @@ img {
 
 .HyperMD-header .cm-fold-indicator .collapse-indicator::before {
   font-size: calc(var(--font-text-size) * 0.75);
-  font-weight: 600 !important;
+  font-weight: 600;
   color: var(--text-faint);
   width: max-content;
   margin-right: 0.25em;
@@ -1133,14 +1147,15 @@ body.is-mobile .workspace-drawer.mod-left {
 .markdown-rendered table,
 .markdown-source-view.mod-cm6 .cm-embed-block table,
 .cm-preview-code-block table {
-  width: 100% !important;
+  width: 100%;
   table-layout: auto;
 }
 
 /* Also target the table container */
 .markdown-preview-view .table-wrapper,
-.markdown-rendered .table-wrapper {
-  width: 100% !important;
+.markdown-rendered .table-wrapper,
+body .markdown-source-view.mod-cm6 .cm-table-widget .table-wrapper {
+  width: 100%;
 }
 
 /* Source: hide-scrollbars.css */
@@ -1150,10 +1165,15 @@ body.is-mobile .workspace-drawer.mod-left {
   -ms-overflow-style: none; /* Legacy Edge/IE */
 }
 
+body {
+  --scrollbar-width: 0;
+  --scrollbar-height: 0;
+}
+
 *::-webkit-scrollbar {
-  width: 0 !important;
-  height: 0 !important;
-  display: none !important; /* Chromium/Electron */
+  width: 0;
+  height: 0;
+  display: none; /* Chromium/Electron */
 }
 
 body,
@@ -1198,11 +1218,11 @@ body,
 }
 
 /* Source: status-bar.css */
-.status-bar {
-  display: none !important;
+body .status-bar {
+  display: none;
 }
 
 /* Keep a small bottom inset on desktop. */
 body:not(.is-mobile) .workspace-leaf-content .view-content {
-  padding-bottom: 8px !important;
+  padding-bottom: 8px;
 }

@@ -5,14 +5,15 @@
 .markdown-rendered table,
 .markdown-source-view.mod-cm6 .cm-embed-block table,
 .cm-preview-code-block table {
-  width: 100% !important;
+  width: 100%;
   table-layout: auto;
 }
 
 /* Also target the table container */
 .markdown-preview-view .table-wrapper,
-.markdown-rendered .table-wrapper {
-  width: 100% !important;
+.markdown-rendered .table-wrapper,
+body .markdown-source-view.mod-cm6 .cm-table-widget .table-wrapper {
+  width: 100%;
 }
 
 /* Source: hide-scrollbars.css */
@@ -22,10 +23,15 @@
   -ms-overflow-style: none; /* Legacy Edge/IE */
 }
 
+body {
+  --scrollbar-width: 0;
+  --scrollbar-height: 0;
+}
+
 *::-webkit-scrollbar {
-  width: 0 !important;
-  height: 0 !important;
-  display: none !important; /* Chromium/Electron */
+  width: 0;
+  height: 0;
+  display: none; /* Chromium/Electron */
 }
 
 body,
@@ -70,11 +76,11 @@ body,
 }
 
 /* Source: status-bar.css */
-.status-bar {
-  display: none !important;
+body .status-bar {
+  display: none;
 }
 
 /* Keep a small bottom inset on desktop. */
 body:not(.is-mobile) .workspace-leaf-content .view-content {
-  padding-bottom: 8px !important;
+  padding-bottom: 8px;
 }
