@@ -470,6 +470,11 @@ body {
   --h1-size: calc(var(--font-text-size) * 2);
 }
 
+/* Obsidian sets its own divider color on translucent windows. */
+body.is-translucent:not(.is-fullscreen) {
+  --divider-color: transparent;
+}
+
 /*
  * ╭─────────────────────────────────────────────────────────╮
  * │                  Theme Color Variables                  │
