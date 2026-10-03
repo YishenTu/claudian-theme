@@ -23,6 +23,12 @@ A note-taking app should feel like a blank page, not a control panel.
 
 ## Install
 
+### From the Obsidian community
+
+Open [Claudian](https://community.obsidian.md/themes/claudian) on the Obsidian community site, and install it from there. You can also open **Settings → Appearance → Themes → Manage** in Obsidian, search for **Claudian**, and select **Install and use**.
+
+### Manually
+
 1. Create a `Claudian` folder inside your vault's `.obsidian/themes/` directory.
 2. Copy `theme.css` and `manifest.json` into it.
 3. In Obsidian, open **Settings → Appearance → Themes** and select **Claudian**.
