@@ -41,12 +41,7 @@ With the [Style Settings](https://github.com/mgmeyers/obsidian-style-settings) p
 
 ## Development
 
-Edit the files in `src/`, then run `npm run build` (Node.js, no dependencies) to regenerate `theme.css`.
-
-- `src/base.css`: colors, typography, editor, and Style Settings.
-- `src/left-sidebar.css`: the left sidebar, tabs, and file tree.
-- `src/vault-snippets.css`: tables, scrollbars, tab underline, right-sidebar icons, and status bar.
-- `screenshots/`: README images; `screenshot.png` in the root is the 512×288 image for the Obsidian theme directory.
+Edit `src/claudian.css`, then run `npm run build` (Node.js, no dependencies) to regenerate `theme.css` with the license header. The source has three sections: base styles, the left sidebar, and extras.
 
 ## Releasing
 
