@@ -330,6 +330,21 @@ body:not(.hide-tab-bar-always):not(.hide-tab-bar-never)
   padding-right: 4px;
 }
 
+/* With the tab bar hidden, the PDF toolbar sits in the titlebar row:
+   clear the window controls like Obsidian's tab bar does. */
+body.is-hidden-frameless:not(.is-fullscreen):not(.hide-tab-bar-never)
+  .mod-root
+  .workspace-tabs.mod-top-left-space:not(.mod-stacked):not(
+    :has(.workspace-tab-header:nth-of-type(2))
+  )
+  .pdf-toolbar,
+body.is-hidden-frameless:not(.is-fullscreen).hide-tab-bar-always
+  .mod-root
+  .workspace-tabs.mod-top-left-space
+  .pdf-toolbar {
+  padding-left: calc(var(--size-4-3) + var(--frame-left-space));
+}
+
 /* Hide navigation buttons in view header */
 .view-header-nav-buttons {
   display: none;
